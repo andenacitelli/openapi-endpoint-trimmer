@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "tsx src/index.ts example1 example2",
-    "commit": "npm run lint && cz",
+    "commit": "npm run lint && git add --all && cz",
     "build": "tsc",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix"
   },
@@ -54,6 +54,11 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "release": {
+    "branches": [
+      "main"
     ]
   }
 }
