@@ -4,10 +4,7 @@
   "description": "",
   "type": "module",
   "files": [
-    "dist/**",
-    "package.json",
-    "README.md",
-    "LICENSE"
+    "dist/**"
   ],
   "bin": "dist/index.js",
   "scripts": {
@@ -84,12 +81,7 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      [
-        "@semantic-release/npm",
-        {
-          "pkgRoot": "dist"
-        }
-      ],
+      "@semantic-release/npm",
       [
         "@semantic-release/git",
         {
