@@ -13,7 +13,7 @@ program
     .option("-u, --url <URL>", "Input URL")
     .option("-o, --output <output>", "Output File")
     .option("-v, --version", "Display the current version.")
-    .option("-p, --paths <path>", "A comma-separated, zero-spaces list of paths to keep. (Ex. /api/v1/users,/api/v1/organizations)")
+    .option("-p, --prefixes <path>", "A comma-separated, zero-spaces list of paths to keep. (Ex. /api/v1/users,/api/v1/organizations)")
     .option("--help", "Display all flags, commands, and descriptions.");
 program.parse();
 if (program.opts().help) {
@@ -29,7 +29,7 @@ const options = z
     input: z.string().optional(),
     url: z.string().url().optional(),
     output: z.string(),
-    paths: z.string(),
+    prefixes: z.string(),
 })
     .refine((data) => {
     if ((data.input && data.url) || (!data.input && !data.url)) {
@@ -53,12 +53,12 @@ else if (options.url) {
 else {
     throw new Error(`Found neither an input URL or an input file!`);
 }
-const pathsToRetain = options.paths.split(",");
-console.log(chalk.gray(`Trimming to just paths ${pathsToRetain.join(", ")}...`));
+const prefixes = options.prefixes.split(",");
+console.log(chalk.gray(`Trimming to just paths ${prefixes.join(", ")}...`));
 let parsed = load(data);
 const paths = {};
 for (const path of Object.keys(parsed.paths)) {
-    if (pathsToRetain.includes(path)) {
+    if (prefixes.some((retain) => path.startsWith(retain))) {
         paths[path] = parsed.paths[path];
     }
 }
