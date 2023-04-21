@@ -36,7 +36,7 @@ Options:
   -i, --input <input>    Input File (Local or Absolute Path). (Required: Either this or --url).
   -u, --url <URL>        Input URL
   -o, --output <output>  Output File
-  -p, --paths <path>     A comma-separated, zero-spaces list of paths to keep. (Ex. /api/v1/users,/api/v1/organizations)
+  -p, --prefixes <path>     A comma-separated, zero-spaces list of path prefixes to keep. Anything starting with a prefix contained here will be kept. (Ex. /api/v1/users,/repositories)
   
   --help, -h                Display all flags, commands, and descriptions.
   --version, -v             Display the current version.
