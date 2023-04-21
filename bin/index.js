@@ -12,11 +12,16 @@ program
     .option("-i, --input <input>", "Input File (Local or Absolute Path). (Required: Either this or --url).")
     .option("-u, --url <URL>", "Input URL")
     .option("-o, --output <output>", "Output File")
+    .option("-v, --version", "Display the current version.")
     .option("-p, --paths <path>", "A comma-separated, zero-spaces list of paths to keep. (Ex. /api/v1/users,/api/v1/organizations)")
     .option("--help", "Display all flags, commands, and descriptions.");
 program.parse();
 if (program.opts().help) {
     program.help();
+    process.exit(0);
+}
+if (program.opts().version) {
+    console.log(process.env.npm_package_version);
     process.exit(0);
 }
 const options = z
