@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "start": "tsc && node ./bin/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
-    "commit": "npm run lint && git add --all && cz && git push",
+    "commit": "npm run lint && git add --all && cz && git pull && git push",
     "build": "tsc",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "demo:mkdir": "mkdirp generated",
