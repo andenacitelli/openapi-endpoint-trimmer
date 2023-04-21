@@ -2,10 +2,13 @@
   "name": "openapi-endpoint-trimmer",
   "version": "1.1.0",
   "description": "",
-  "bin": "./bin/index.js",
   "type": "module",
+  "files": [
+    "dist/**"
+  ],
+  "bin": "dist/index.js",
   "scripts": {
-    "start": "tsc && node ./bin/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
+    "start": "tsc && node ./dist/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
     "commit": "npm run lint && git add --all && cz && git pull && git push",
     "build": "tsc",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
@@ -15,8 +18,8 @@
     "demo:generate:zod": "openapi-zod-client generated/schema.yaml --output generated/types.ts",
     "demo": "run-s demo:mkdir demo:trimmer demo:validate demo:generate:zod"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Anden Acitelli",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^5.2.0",
     "commander": "^10.0.1",
@@ -33,9 +36,7 @@
     "@semantic-release/npm": "^10.0.3",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/eslint": "^8.37.0",
-    "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.15.13",
-    "@types/yaml": "^1.9.7",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "commitizen": "^4.3.0",
@@ -81,12 +82,17 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      "@semantic-release/npm",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "dist"
+        }
+      ],
       [
         "@semantic-release/git",
         {
           "assets": [
-            "bin/**/*.*",
+            "dist/**/*.*",
             "package.json",
             "package-lock.json"
           ],
