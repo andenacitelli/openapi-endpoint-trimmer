@@ -11,9 +11,9 @@
     "build": "tsc",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "demo:mkdir": "mkdirp generated",
-    "demo:trimmer": "tsc && node . --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output schema.yaml --paths /search/repositories,/search/code",
-    "demo:validate": "swagger-cli validate schema.yaml",
-    "demo:generate:zod": "openapi-zod-client schema.yaml --output generated/types.ts",
+    "demo:trimmer": "run-s build && node . --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/schema.yaml --paths /search/repositories,/search/code",
+    "demo:validate": "swagger-cli validate generated/schema.yaml",
+    "demo:generate:zod": "openapi-zod-client generated/schema.yaml --output generated/types.ts",
     "demo": "run-s demo:mkdir demo:trimmer demo:validate demo:generate:zod"
   },
   "author": "",
@@ -21,7 +21,6 @@
   "dependencies": {
     "chalk": "^5.2.0",
     "commander": "^10.0.1",
-    "figlet": "^1.6.0",
     "js-yaml": "^4.1.0",
     "undici": "^5.22.0",
     "zod": "^3.21.4"
@@ -35,7 +34,6 @@
     "@semantic-release/npm": "^10.0.3",
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/eslint": "^8.37.0",
-    "@types/figlet": "^1.5.5",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.15.13",
     "@types/yaml": "^1.9.7",

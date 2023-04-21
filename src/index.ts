@@ -1,14 +1,19 @@
 #! /usr/bin/env node
 import * as fs from "node:fs";
 
+import chalk from "chalk";
 import { program } from "commander";
-import figlet from "figlet";
 import { dump, load } from "js-yaml";
 import { request } from "undici";
 import { z } from "zod";
 
-console.log(figlet.textSync("OpenAPI Endpoint Trimmer"));
-
+console.log(
+  chalk.blue(
+    `${chalk.blue.bold("OpenAPI Endpoint Trimmer")} ${chalk.gray(
+      "v" + process.env.npm_package_version
+    )}`
+  )
+);
 program
   .name("openapi-endpoint-trimmer")
   .description("OpenAPI Endpoint Trimmer.")
