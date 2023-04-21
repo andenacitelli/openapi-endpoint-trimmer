@@ -2,21 +2,29 @@
   "name": "openapi-endpoint-trimmer",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
+  "main": "./bin/index.js",
+  "bin": "./bin/index.js",
   "type": "module",
   "scripts": {
-    "start": "tsx src/index.ts example1 example2",
+    "start": "tsc && node ./bin/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
     "commit": "npm run lint && git add --all && cz && git push",
     "build": "tsc",
-    "lint": "eslint ./src/**/*.{ts,tsx} --fix"
+    "lint": "eslint ./src/**/*.{ts,tsx} --fix",
+    "demo:mkdir": "mkdirp generated",
+    "demo:trimmer": "tsc && node . --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output schema.yaml --paths /search/repositories,/search/code",
+    "demo:validate": "swagger-cli validate schema.yaml",
+    "demo:generate:zod": "openapi-zod-client schema.yaml --output generated/types.ts",
+    "demo": "run-s demo:mkdir demo:trimmer demo:validate demo:generate:zod"
   },
-  "bin": "./dist/index.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.2.0",
     "commander": "^10.0.1",
-    "figlet": "^1.6.0"
+    "figlet": "^1.6.0",
+    "js-yaml": "^4.1.0",
+    "undici": "^5.22.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
@@ -28,7 +36,9 @@
     "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/eslint": "^8.37.0",
     "@types/figlet": "^1.5.5",
-    "@types/node": "^18.15.12",
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^18.15.13",
+    "@types/yaml": "^1.9.7",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "commitizen": "^4.3.0",
@@ -41,8 +51,13 @@
     "eslint-plugin-unicorn": "^46.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.3",
+    "mkdirp": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "openapi-endpoint-trimmer": "^1.0.0",
+    "openapi-zod-client": "^1.6.3",
     "prettier": "^2.8.7",
     "semantic-release": "^21.0.1",
+    "swagger-cli": "^4.0.4",
     "tsconfig": "^7.0.0",
     "tsx": "^3.12.6",
     "typescript": "^5.0.4"
@@ -73,7 +88,7 @@
         "@semantic-release/git",
         {
           "assets": [
-            "dist/**/*.js",
+            "bin/**/*.*",
             "package.json",
             "package-lock.json"
           ],
