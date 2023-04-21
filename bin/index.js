@@ -28,7 +28,7 @@ const options = z
 })
     .refine((data) => {
     if ((data.input && data.url) || (!data.input && !data.url)) {
-        throw new Error("Please specify either an input file or a URL. Specifying both at once is not supported.");
+        throw new Error("Please specify either an input file or a URL (exactly one).");
     }
     return true;
 })
