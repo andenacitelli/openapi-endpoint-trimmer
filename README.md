@@ -37,7 +37,9 @@ Options:
   -u, --url <URL>        Input URL
   -o, --output <output>  Output File
   -p, --paths <path>     A comma-separated, zero-spaces list of paths to keep. (Ex. /api/v1/users,/api/v1/organizations)
+  
   --help, -h                Display all flags, commands, and descriptions.
+  --version, -v             Display the current version.
 ```
 
 ### Implementation Details
