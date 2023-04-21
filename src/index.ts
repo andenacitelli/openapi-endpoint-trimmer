@@ -75,7 +75,9 @@ if (options.input) {
 }
 
 const pathsToRetain = options.paths.split(",");
-console.log(`Trimming to just paths ${pathsToRetain.join(", ")}...`);
+console.log(
+  chalk.gray(`Trimming to just paths ${pathsToRetain.join(", ")}...`)
+);
 
 let parsed = load(data) as { paths: Record<string, object> };
 
@@ -94,3 +96,4 @@ parsed = {
 const filePath =
   options.output ?? (options.input ?? options.url) + "-trimmed.yaml";
 fs.writeFileSync(filePath, dump(parsed));
+console.log(`Output To: ${filePath}`);

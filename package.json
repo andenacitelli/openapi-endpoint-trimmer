@@ -8,12 +8,12 @@
   ],
   "bin": "dist/index.js",
   "scripts": {
-    "start": "tsc && node ./dist/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
+    "start": "run-s build && node ./dist/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --paths /search/repositories",
     "commit": "npm run lint && git add --all && cz && git pull && git push",
     "build": "tsc",
     "lint": "eslint ./src/**/*.{ts,tsx} --fix",
     "demo:mkdir": "mkdirp generated",
-    "demo:trimmer": "run-s build && node . --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/schema.yaml --paths /search/repositories,/search/code",
+    "demo:trimmer": "run-s build && node ./dist/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/schema.yaml --paths /search/repositories,/search/code",
     "demo:validate": "swagger-cli validate generated/schema.yaml",
     "demo:generate:zod": "openapi-zod-client generated/schema.yaml --output generated/types.ts",
     "demo": "run-s demo:mkdir demo:trimmer demo:validate demo:generate:zod"
@@ -52,18 +52,16 @@
     "husky": "^8.0.3",
     "mkdirp": "^3.0.0",
     "npm-run-all": "^4.1.5",
-    "openapi-endpoint-trimmer": "^1.0.0",
     "openapi-zod-client": "^1.6.3",
     "prettier": "^2.8.7",
     "semantic-release": "^21.0.1",
     "swagger-cli": "^4.0.4",
     "tsconfig": "^7.0.0",
-    "tsx": "^3.12.6",
     "typescript": "^5.0.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aacitelli/openapi-endpoint-trim.git"
+    "url": "https://github.com/aacitelli/openapi-endpoint-trimmer.git"
   },
   "config": {
     "commitizen": {
