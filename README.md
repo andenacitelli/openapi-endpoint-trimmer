@@ -4,6 +4,10 @@
 
 Takes in a path to an OpenAPI spec, either as a file path or a URL, and outputs a new OpenAPI spec with only the paths you specify. The main use case for this is to trim an external spec to just the paths you need before you feed it through a code generator like [openapi-zod-client](https://github.com/astahmer/openapi-zod-client).
 
+---
+
+*I work for [Akkio](https://akkio.com), a predictive AI platform geared towards Data Analysts. If you're looking for predictive AI without needing any data science knowledge, check us out!*
+
 ### Install
 
 ```bash
