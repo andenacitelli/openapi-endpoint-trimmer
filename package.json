@@ -19,6 +19,7 @@
     "demo:generate:zod": "openapi-zod-client generated/schema.yaml --output generated/types.ts",
     "demo": "pnpm demo:mkdir && pnpm demo:trimmer && pnpm demo:validate && pnpm demo:generate:zod"
   },
+  "packageManager": "pnpm@9.6.0",
   "author": "Anden Acitelli",
   "license": "MIT",
   "dependencies": {
