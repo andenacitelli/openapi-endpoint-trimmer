@@ -14,5 +14,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
       - run: pnpm i
+      - run: pnpm lint:eslint
+      - run: pnpm lint:typecheck
       - run: pnpm build
       - run: pnpm demo
