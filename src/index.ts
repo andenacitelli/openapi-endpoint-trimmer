@@ -62,7 +62,6 @@ let data: string;
 if (options.input) {
   data = fs.readFileSync(options.input, "utf8");
 } else if (options.url) {
-  // eslint-disable-next-line unicorn/no-await-expression-member
   const response = await request(options.url);
   if (response.statusCode !== 200) {
     throw new Error(
