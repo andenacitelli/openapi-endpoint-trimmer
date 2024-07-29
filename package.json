@@ -6,7 +6,9 @@
   "files": [
     "dist/**"
   ],
-  "bin": "dist/index.js",
+  "bin": {
+    "openapi-endpoint-trimmer": "dist/index.js"
+  },
   "scripts": {
     "start": "run-s build && node ./dist/index.js --url https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.yaml --output generated/output.yaml --prefixes /search/repositories",
     "commit": "npm run lint && git add --all && cz && git pull && git push",
@@ -58,7 +60,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andenacitelli/openapi-endpoint-trimmer.git"
+    "url": "git+https://github.com/andenacitelli/openapi-endpoint-trimmer.git"
   },
   "config": {
     "commitizen": {
