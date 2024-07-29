@@ -21,7 +21,7 @@ This package is meant to be used as part of a `package.json` script.
 A demo script is included in `package.json` that pulls the GitHub REST API's OpenAPI Spec, trims it to just a few endpoints, and runs it through [openapi-zod-client](https://github.com/astahmer/openapi-zod-client) to generate types. To run:
 
 ```bash
-git clone https://github.com/aacitelli/openapi-endpoint-trimmer
+git clone https://github.com/andenacitelli/openapi-endpoint-trimmer
 cd openapi-endpoint-trimmer
 npm i
 npm run demo
